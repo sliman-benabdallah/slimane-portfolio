@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Optional custom smooth scrolling and body defaults */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0f172a; /* Slate 900 */
+  color: #f8fafc;           /* Slate 50 */
+}

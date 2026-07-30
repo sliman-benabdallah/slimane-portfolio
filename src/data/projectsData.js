@@ -1,0 +1,32 @@
+export const projectsData = [
+  {
+    id: 1,
+    title: "Full-Stack E-Commerce Platform",
+    description: "A complete online store with user authentication, product catalog, shopping cart state management, payment gateway integration, and an admin dashboard.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    tags: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+    githubUrl: "https://github.com",
+    liveDemoUrl: "https://example.com",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Collaborative Task Manager",
+    description: "A real-time project management tool featuring user roles, JWT authentication, task assignments, drag-and-drop boards, and automated email notifications.",
+    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=800&auto=format&fit=crop",
+    tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Prisma"],
+    githubUrl: "https://github.com",
+    liveDemoUrl: "https://example.com",
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "RESTful API & Analytics Dashboard",
+    description: "A data analytics engine that aggregates real-time API metrics, visualizes data streams, and offers rate-limited REST endpoints for developer consumption.",
+    image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?q=80&w=800&auto=format&fit=crop",
+    tags: ["Node.js", "Express", "Redis", "Chart.js", "Tailwind CSS"],
+    githubUrl: "https://github.com",
+    liveDemoUrl: "https://example.com",
+    featured: false,
+  },
+];
