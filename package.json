@@ -1,5 +1,6 @@
 {
   "name": "portfolio",
+  "homepage": "https://sliman-benabdallah.github.io/slimane-portfolio/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "gh-pages": "^6.3.0",
     "lucide-react": "^1.28.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
