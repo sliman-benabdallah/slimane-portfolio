@@ -2,10 +2,9 @@ export const skillsData = [
   {
     category: "Front-End",
     skills: [
-      { name: "React.js / Next.js", level: "Advanced" },
-      { name: "JavaScript (ES6+) / TypeScript", level: "Advanced" },
-      { name: "HTML5 / CSS3", level: "Advanced" },
-      { name: "Tailwind CSS", level: "Advanced" },
+      { name: "React.js", level: "Advanced" },
+      { name: "JavaScript (ES6+)", level: "Advanced" },
+      { name: "MUI / Tailwind CSS", level: "Intermediate" },
     ],
   },
   {
@@ -20,9 +19,8 @@ export const skillsData = [
   {
     category: "Tools & DevOps",
     skills: [
-      { name: "Git & GitHub", level: "Advanced" },
+      { name: "Git & GitHub", level: "Beginner" },
       { name: "Docker (Basics)", level: "Beginner" },
-      { name: "Vercel / Render / Netlify", level: "Intermediate" },
       { name: "Postman / Swagger", level: "Intermediate" },
     ],
   },

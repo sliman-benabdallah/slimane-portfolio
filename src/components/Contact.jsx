@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { Mail, MapPin, Send, MessageSquare, CheckCircle, Clock } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Mail, MapPin, Send, MessageSquare, CheckCircle, Clock, Loader2, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { emailConfig } from '../data/personalData';
 
 export default function Contact() {
+  const formRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -9,22 +12,47 @@ export default function Contact() {
     message: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState({
+    submitting: false,
+    submitted: false,
+    error: null,
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate form submission
-    setSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setStatus({ submitting: true, submitted: false, error: null });
 
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 5000);
+    // REPLACE THESE STRINGS WITH YOUR ACTUAL EMAILJS KEYS
+    const SERVICE_ID = emailConfig.serviceID;
+    const TEMPLATE_ID = emailConfig.templateID;
+    const PUBLIC_KEY = emailConfig.publicKEY;
+
+    try {
+      // Async/Await call to send the form
+      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY);
+
+      // Handle successful submission
+      setStatus({ submitting: false, submitted: true, error: null });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+
+      // Clear success notification after 6 seconds
+      setTimeout(() => {
+        setStatus((prev) => ({ ...prev, submitted: false }));
+      }, 6000);
+
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setStatus({
+        submitting: false,
+        submitted: false,
+        error: 'Failed to send message. Please try again or email directly.',
+      });
+    }
   };
 
   return (
@@ -58,8 +86,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-slate-200">Email Address</h4>
-                    <a href="mailto:developer@example.com" className="text-slate-400 hover:text-sky-400 text-sm transition-colors">
-                      developer@example.com
+                    <a href="mailto:slimanbe206@gmail.com" className="text-slate-400 hover:text-sky-400 text-sm transition-colors">
+                      slimanbe206@gmail.com
                     </a>
                   </div>
                 </div>
@@ -99,14 +127,21 @@ export default function Contact() {
           <div className="lg:col-span-7">
             <div className="bg-slate-800/40 border border-slate-700/60 rounded-2xl p-6 sm:p-8 shadow-lg">
               
-              {submitted && (
+              {status.submitted && (
                 <div className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center gap-3 text-emerald-400 text-sm font-medium">
                   <CheckCircle className="w-5 h-5 shrink-0" />
                   <span>Thank you! Your message has been sent successfully.</span>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              {status.error && (
+                <div className="mb-6 p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl flex items-center gap-3 text-rose-400 text-sm font-medium">
+                  <AlertCircle className="w-5 h-5 shrink-0" />
+                  <span>{status.error}</span>
+                </div>
+              )}
+
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
@@ -175,10 +210,20 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl transition-all shadow-lg shadow-sky-500/20 hover:shadow-sky-500/35"
+                  disabled={status.submitting}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-sky-500 hover:bg-sky-600 disabled:bg-sky-500/50 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all shadow-lg shadow-sky-500/20 hover:shadow-sky-500/35"
                 >
-                  <span>Send Message</span>
-                  <Send className="w-4 h-4" />
+                  {status.submitting ? (
+                    <>
+                      <span>Sending...</span>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <Send className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </form>
 

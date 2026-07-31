@@ -4,4 +4,10 @@ const personalData = {
     linkedIn: import.meta.env.VITE_LINKEDIN,
 };
 
-export default personalData;
+const emailConfig = {
+    serviceID: import.meta.env.VITE_SERVICE_ID,
+    templateID: import.meta.env.VITE_TEMPLATE_ID,
+    publicKEY: import.meta.env.VITE_PUBLIC_KEY,
+};
+
+export { personalData, emailConfig };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Code2 } from 'lucide-react';
-import personalData from '../data/personalData';
+import { personalData } from '../data/personalData';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
