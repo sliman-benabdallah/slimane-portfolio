@@ -1,14 +1,14 @@
 export const projectsData = [
-  // {
-  //   id: 1,
-  //   title: "Full-Stack E-Commerce Platform",
-  //   description: "A complete online store with user authentication, product catalog, shopping cart state management, payment gateway integration, and an admin dashboard.",
-  //   image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-  //   tags: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
-  //   githubUrl: "https://github.com",
-  //   liveDemoUrl: "https://example.com",
-  //   featured: true,
-  // },
+  {
+    id: 1,
+    title: "Dynamic To-Do List Application",
+    description: "An interactive task management app featuring full CRUD operations, state persistence via LocalStorage, dynamic status filtering, and visual progress tracking.",
+    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=800&auto=format&fit=crop",
+    tags: ["React", "Tailwind CSS", "LocalStorage", "Lucide React", "JavaScript"],
+    githubUrl: "https://github.com/sliman-benabdallah/react-todo-list/",
+    liveDemoUrl: "https://sliman-benabdallah.github.io/react-todo-list/",
+    featured: true,
+  },
   // {
   //   id: 2,
   //   title: "Collaborative Task Manager",
